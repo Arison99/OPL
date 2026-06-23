@@ -1,0 +1,45 @@
+name: evolution-refactor-agent
+version: 1.0.0
+description: Autonomous software evolution agent for safe refactoring with self-healing validation.
+objective: Refactor long methods into smaller helpers without changing public APIs.
+
+inputs:
+  - commit_logs
+  - static_analysis_alerts
+  - test_coverage_reports
+  - failing_test_reports
+  - architecture_constraints
+
+actions:
+  - create_branch
+  - refactor_method
+  - run_checks
+  - commit_changes
+  - open_pull_request
+  - rollback_commit
+  - open_issue
+
+constraints:
+  - no_breaking_changes
+  - preserve_public_api
+  - minimal_localized_diff
+  - preserve_behavior
+
+validation_pipeline:
+  - compile
+  - unit_tests
+  - regression_tests
+  - static_analysis
+
+on_failure:
+  strategy: self_heal
+  steps:
+    - rollback_last_commit
+    - collect_failure_evidence
+    - open_issue_with_evidence
+    - request_human_review
+
+artifacts:
+  system_prompt: prompts/system.prompt.md
+  control_loop: control-loop.md
+  self_healing_policy: policies/self-healing-policy.md
