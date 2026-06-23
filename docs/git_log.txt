@@ -1,0 +1,13 @@
+*   2bfab6c Merge develop into feature/discount-logic
+|\  
+| *   23c40bb Merge hotfix/null-pointer into develop
+| |\  
+* | | a077803 Add discount parameter to processOrder
+|/ /  
+| | * 77e4608 Merge hotfix/null-pointer into main
+| |/| 
+|/|/  
+| * bba15d6 Add null check to processOrder
+|/  
+* 686dca1 Add initial order processor
+* 1759fd6 Initial commit
